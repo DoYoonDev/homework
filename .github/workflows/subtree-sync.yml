@@ -1,0 +1,30 @@
+name: Sync Shopping Subtree
+
+on:
+  schedule:
+    - cron: '0 3 * * *' # 매일 새벽 3시에 자동 실행
+  workflow_dispatch: # 수동 실행 버튼도 생성
+
+jobs:
+  sync-subtree:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout homework repo
+        uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.GH_TOKEN }}
+          fetch-depth: 0
+
+      - name: Add react-study remote
+        run: |
+          git remote add react-study https://github.com/DoYoonDev/react-study.git
+          git fetch react-study
+
+      - name: Pull subtree
+        run: |
+          git subtree pull --prefix=shopping react-study main --squash
+
+      - name: Push changes
+        run: |
+          git push origin main
