@@ -16,6 +16,11 @@ jobs:
           token: ${{ secrets.GH_TOKEN }}
           fetch-depth: 0
 
+      - name: Setup Git identity
+        run: |
+          git config user.name "이도윤"
+          git config user.email "dlwhdgus482@naver.com"
+
       - name: Add react-study remote
         run: |
           git remote remove react-study || true
@@ -24,7 +29,7 @@ jobs:
 
       - name: Pull subtree
         run: |
-          git -c user.name="이도윤" -c user.email="dlwhdgus482@naver.com" subtree pull --prefix=shopping react-study main --squash
+          git subtree pull --prefix=shopping react-study main --squash
 
       - name: Push changes
         run: |
