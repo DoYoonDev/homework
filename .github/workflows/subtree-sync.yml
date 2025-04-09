@@ -28,6 +28,11 @@ jobs:
           git fetch react-study
 
       - name: Pull subtree
+        env:
+          GIT_COMMITTER_NAME: "이도윤"
+          GIT_COMMITTER_EMAIL: "dlwhdgus482@naver.com"
+          GIT_AUTHOR_NAME: "이도윤"
+          GIT_AUTHOR_EMAIL: "dlwhdgus482@naver.com"
         run: |
           git subtree pull --prefix=shopping react-study main --squash
 
