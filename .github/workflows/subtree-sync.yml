@@ -16,6 +16,11 @@ jobs:
           token: ${{ secrets.GH_TOKEN }}
           fetch-depth: 0
 
+      - name: Setup Git identity
+        run: |
+            git config --global user.name "이도윤"
+            git config --global user.email "dlwhdgus482@naver.com"
+
       - name: Add react-study remote
         run: |
           git remote add react-study https://github.com/DoYoonDev/react-study.git
